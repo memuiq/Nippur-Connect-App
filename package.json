@@ -1,11 +1,12 @@
 {
   "name": "nippur.connect.app",
   "version": "1.0.0",
+  "description": "Nippur Connect UDP Receiver",
   "dependencies": {
-    "@capacitor/core": "latest",
-    "@capacitor/android": "latest",
-    "@capacitor/cli": "latest",
-    "@capacitor-community/udp": "latest",
-    "@capacitor/local-notifications": "latest"
+    "@capacitor/core": "^6.0.0",
+    "@capacitor/android": "^6.0.0",
+    "@capacitor/cli": "^6.0.0",
+    "@capacitor-community/udp": "^5.0.0",
+    "@capacitor/local-notifications": "^6.0.0"
   }
 }
