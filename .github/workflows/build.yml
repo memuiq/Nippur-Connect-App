@@ -1,21 +1,27 @@
 name: Build Android APK
-on: [push] # سيبدأ البناء بمجرد ضغط "Save" على الملفات
+on: [push]
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
       - name: Setup Node
-        uses: actions/setup-node@v2
-      - name: Install Dependencies
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Clean Install
         run: |
+          npm config set registry https://registry.npmjs.org/
           npm install
+      - name: Add Android Platform
+        run: |
           npx cap add android
+          npx cap sync android
       - name: Build APK
         run: |
           cd android && ./gradlew assembleDebug
       - name: Upload APK
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v4
         with:
           name: Nippur-Connect-V1
           path: android/app/build/outputs/apk/debug/app-debug.apk
