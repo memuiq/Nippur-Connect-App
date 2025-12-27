@@ -1,3 +1,4 @@
+bug.apk
 name: Build Android APK
 on: [push]
 jobs:
@@ -9,13 +10,13 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '20'
-      - name: Clean Install
+      - name: Install Dependencies
         run: |
           npm config set registry https://registry.npmjs.org/
-          npm install
-      - name: Add Android Platform
+          npm install --no-package-lock # تجاهل أي أخطاء في الـ Lock
+      - name: Prepare Android
         run: |
-          npx cap add android
+          npx cap add android || true
           npx cap sync android
       - name: Build APK
         run: |
